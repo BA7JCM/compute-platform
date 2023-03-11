@@ -32,4 +32,4 @@ cp ~/ks.cfg /iso/ks.cfg
 cp ~/isolinux.cfg /iso/isolinux/isolinux.cfg
 
 cd /iso
-mkisofs -o ~/MyNode-20230310-x86_64-V1.iso -b isolinux/isolinux.bin -c isolinux/boot.cat --no-emul-boot --boot-load-size 4 --boot-info-table -J -R -V "MyNode-20230310-x86_64-V1" .
+mkisofs -o ~/YHCN -b isolinux/isolinux.bin -c isolinux/boot.cat --no-emul-boot --boot-load-size 4 --boot-info-table -J -R -V "MyNode-20230310-x86_64-V1" .
