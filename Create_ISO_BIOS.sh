@@ -24,8 +24,10 @@ gunzip fc97cae5256d30345b2d5a17292f712365d912dca63b93f3b00ba9930f9551c0-modules.
 cp fc97cae5256d30345b2d5a17292f712365d912dca63b93f3b00ba9930f9551c0-modules.yaml modules.yaml
 modifyrepo_c --mdtype=modules ./modules.yaml ./repodata/
 
-mkdir /iso/ExtraPackages && cd /iso/ExtraPackages
-dnf install -y --downloadonly --downloaddir=/iso/ExtraPackages/ qemu-kvm libvirt virt-install cockpit cockpit-machines bash-completion vim
+mkdir -p /iso/ExtraPackages/Packages/
+cd /iso/ExtraPackages/
+dnf install -y --downloadonly --downloaddir=/iso/ExtraPackages/Packages/ genisoimage qemu-kvm libvirt virt-install cockpit cockpit-machines bash-completion vim
+dnf download -y --alldeps --resolve --allowerasing --downloadonly --downloaddir=/iso/ExtraPackages/Packages/ genisoimage
 createrepo .
 
 cp ~/ks.cfg /iso/ks.cfg
