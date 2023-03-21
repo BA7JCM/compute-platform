@@ -1,4 +1,4 @@
-dnf install rsync createrepo genisoimage -y
+dnf install rsync createrepo -y
 
 mount ~/CentOS-Stream-8-x86_64-latest-dvd1.iso /media
 mkdir /iso
@@ -27,11 +27,12 @@ modifyrepo_c --mdtype=modules ./modules.yaml ./repodata/
 mkdir -p /iso/ExtraPackages/Packages/
 cd /iso/ExtraPackages/
 dnf install -y --downloadonly --downloaddir=/iso/ExtraPackages/Packages/ genisoimage qemu-kvm libvirt virt-install cockpit cockpit-machines bash-completion vim
-dnf download -y --alldeps --resolve --allowerasing --downloadonly --downloaddir=/iso/ExtraPackages/Packages/ genisoimage
 createrepo .
 
 cp ~/ks.cfg /iso/ks.cfg
 cp ~/isolinux.cfg /iso/isolinux/isolinux.cfg
+
+dnf install genisoimage -y
 
 cd /iso
 mkisofs -o ~/MyNode-20230313-x86_64-V1.iso -b isolinux/isolinux.bin -c isolinux/boot.cat --no-emul-boot --boot-load-size 4 --boot-info-table -J -R -V "MyNode" .

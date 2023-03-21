@@ -14,6 +14,7 @@ centos-gpg-keys-8-6.el8.noarch
 centos-stream-release-8.6-1.el8.noarch
 centos-stream-repos-8-6.el8.noarch
 chkconfig-1.19.1-1.el8.x86_64
+chrony-4.2-1.el8.x86_64
 coreutils-8.30-15.el8.x86_64
 coreutils-common-8.30-15.el8.x86_64
 cpio-2.12-11.el8.x86_64
@@ -356,6 +357,7 @@ systemd-pam-239-71.el8.x86_64
 systemd-udev-239-71.el8.x86_64
 tar-1.30-8.el8.x86_64
 teamd-1.31-4.el8.x86_64
+timedatex-0.5-3.el8.x86_64
 tpm2-tss-2.3.2-4.el8.x86_64
 trousers-0.3.15-1.el8.x86_64
 trousers-lib-0.3.15-1.el8.x86_64
