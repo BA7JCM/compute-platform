@@ -57,8 +57,8 @@ mkdir -p /iso/ExtraPackages/Packages/
 cd /iso/ExtraPackages/
 # add some package to support more thing
 echo download package
-# backup :    --repofrompath=centos_appstream,/media/AppStream --repofrompath=centos_baseos,/media/BaseOS
-dnf -4 download --disablerepo="*" --repofrompath=centos_appstream,${repo_domain}${repo_base_url}AppStream/x86_64/os/ --repofrompath=centos_baseos,${repo_domain}${repo_base_url}BaseOS/x86_64/os/ --repofrompath=centos_epel,${repo_domain}epel/8/Everything/x86_64 --repofrompath=centos_el,${exfat_base_url} --releasever=8 --alldeps -y --resolve --downloadonly --downloaddir=/iso/ExtraPackages/Packages/ genisoimage libusal qemu-kvm libvirt virt-install cockpit cockpit-machines bash-completion vim grub2-efi-x64 dosfstools efibootmgr shim-x64 pciutils usbutils util-linux net-tools ntfs-3g kernel-modules-extra exfat-utils fuse-exfat python39
+# backup :    --repofrompath=centos_appstream,/media/AppStream --repofrompath=centos_baseos,/media/BaseOS 
+dnf -4 download --disablerepo="*" --repofrompath=centos_appstream,${repo_domain}${repo_base_url}AppStream/x86_64/os/ --repofrompath=centos_baseos,${repo_domain}${repo_base_url}BaseOS/x86_64/os/ --repofrompath=centos_epel,${repo_domain}epel/8/Everything/x86_64 --repofrompath=centos_el,${exfat_base_url} --releasever=8  -y --resolve --downloadonly --downloaddir=/iso/ExtraPackages/Packages/ --alldeps genisoimage libusal qemu-kvm libvirt virt-install cockpit cockpit-machines bash-completion vim grub2-efi-x64 dosfstools efi-filesystem efibootmgr shim-x64 pciutils usbutils util-linux net-tools ntfs-3g kernel-modules-extra exfat-utils fuse-exfat python39  python3-pyyaml
 # find /iso/ -name NetworkManager*.rpm | xargs rm
 if [ $? -eq 0 ]; then
 	echo download complete
