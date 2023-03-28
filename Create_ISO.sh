@@ -4,6 +4,9 @@ work_dir=$(cd "$(dirname "$0")" && pwd)
 output_dir=${1:-$work_dir}
 echo "output_dir:"$output_dir
 $work_dir/destroy.sh $output_dir
+repo_base_url="centos/8-stream/"
+repo_domain="https://repo.huaweicloud.com/"
+exfat_base_url="https://download1.rpmfusion.org/free/el/updates/8/x86_64/"
 # 检测是否已存在centos-steam8的原始ISO，如果没有，就用wget现下载一个
 if [ ! -f "./CentOS-Stream-8-x86_64-latest-dvd1.iso" ]; then
 
@@ -54,8 +57,9 @@ mkdir -p /iso/ExtraPackages/Packages/
 cd /iso/ExtraPackages/
 # 使用centos光盘源下载所需的软件包，相比原始脚本（BIOS），需求增加了grub2-efi-x64 dosfstools efibootmgr shim-x64这几个软件包
 echo download package
-# backup :  --repofrompath=centos_appstream,https://repo.huaweicloud.com/centos/8-stream/AppStream/x86_64/os/ --repofrompath=centos_baseos,https://repo.huaweicloud.com/centos/8-stream/BaseOS/x86_64/os/ 
-dnf -4 download --disablerepo="*" --repofrompath=centos_appstream,/media/AppStream --repofrompath=centos_baseos,/media/BaseOS --repofrompath=centos_epel,https://repo.huaweicloud.com/epel/8/Everything/x86_64 --repofrompath=centos_el,https://download1.rpmfusion.org/free/el/updates/8/x86_64/ -y --resolve --downloadonly --downloaddir=/iso/ExtraPackages/Packages/ genisoimage libusal qemu-kvm libvirt virt-install cockpit cockpit-machines bash-completion vim grub2-efi-x64 dosfstools efibootmgr shim-x64 pciutils usbutils util-linux net-tools ntfs-3g kernel-modules-extra exfat-utils fuse-exfat
+# backup :    --repofrompath=centos_appstream,/media/AppStream --repofrompath=centos_baseos,/media/BaseOS
+dnf -4 download --disablerepo="*" --repofrompath=centos_appstream,${repo_domain}${repo_base_url}AppStream/x86_64/os/ --repofrompath=centos_baseos,${repo_domain}${repo_base_url}BaseOS/x86_64/os/ --repofrompath=centos_epel,${repo_domain}epel/8/Everything/x86_64 --repofrompath=centos_el,${exfat_base_url} --releasever=8 --alldeps -y --resolve --downloadonly --downloaddir=/iso/ExtraPackages/Packages/ genisoimage libusal qemu-kvm libvirt virt-install cockpit cockpit-machines bash-completion vim grub2-efi-x64 dosfstools efibootmgr shim-x64 pciutils usbutils util-linux net-tools ntfs-3g kernel-modules-extra exfat-utils fuse-exfat python39
+# find /iso/ -name NetworkManager*.rpm | xargs rm
 if [ $? -eq 0 ]; then
 	echo download complete
 else
