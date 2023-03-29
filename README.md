@@ -36,7 +36,7 @@ compute-platform/
 
 ## Usage
 
-1. Install a minimal `CentOS 8` or other OS base for `RHEL 8`, then you'd better make a snapshot. It's usefule when environment down.
+1. Install a minimal `CentOS 8` , then you'd better make a snapshot. It's usefule when environment down.
 2. The Best way to use aforementioned file is to download and upload to your directory in virtual machine manual instead of `git clone`
 3. Then the script must be empowered with command `chmod +x`
 4. To create ISO use command `./Create_ISO_BIOS.sh` in your directory
